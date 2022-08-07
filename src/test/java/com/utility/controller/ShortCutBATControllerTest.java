@@ -1,7 +1,7 @@
 package com.utility.controller;
 
 import com.utility.constants.Constants;
-import com.utility.controller.ShortCutBATController;
+import com.utility.exceptions.ArraysAreNotTheSameSizeException;
 import com.utility.models.ShortCutBATVO;
 import com.utility.service.ShortCutBATService;
 
@@ -46,5 +46,14 @@ class ShortCutBATControllerTest {
 
          assertTrue((Boolean) shortCutBATController.writeOutShortCutBATFile(pathWithEXEFile, pathWithEXEFile, shortCutName).get(Constants.SUCCESS_CONTROLLER));
     }
+  
+    @Test
+    public void testGetExistingBatFiles_validReturn() throws ArraysAreNotTheSameSizeException{
+        String folderPath = "";
 
+        Mockito.when(shortCutBATService.getExistingBatFiles(folderPath))
+                .thenReturn(null);
+
+         assertTrue((Boolean) shortCutBATController.getExistingBatFiles(folderPath).get(Constants.SUCCESS_CONTROLLER));
+    }
 }

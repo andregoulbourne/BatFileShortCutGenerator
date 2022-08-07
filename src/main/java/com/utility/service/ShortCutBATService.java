@@ -2,6 +2,8 @@ package com.utility.service;
 
 import java.io.File;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
@@ -26,5 +28,22 @@ public class ShortCutBATService {
 		}
 		return false;
 	}
+
+    public List<String> getExistingBatFiles(String folderPath) {
+		List<String> listOfBatFileNames = new ArrayList<>();
+
+		File dir = new File(folderPath);
+		File[] directoryListing = dir.listFiles();
+		if (directoryListing != null) {
+			for (File file : directoryListing) {
+				if(file.getName().contains(".bat"))
+					listOfBatFileNames.add(file.getName());
+			}
+			logger.info("Finish searching directory for bat files ...");
+		} else {
+			logger.error("Directory could not be found ...");
+		}
+		return listOfBatFileNames;
+    }
 
 }

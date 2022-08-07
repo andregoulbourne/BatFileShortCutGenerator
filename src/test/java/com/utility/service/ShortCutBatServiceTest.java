@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 import com.utility.models.ShortCutBATVO;
 import com.utility.service.ShortCutBATService;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ShortCutBatServiceTest {
 
@@ -34,4 +33,10 @@ class ShortCutBatServiceTest {
         assertTrue(shortCutBATService.writeOutShortCutBATFile(shortCutBATVO));
     }
 
+    @Test
+    void testGetExistingBatFiles_testReturnValid(){
+        assertEquals(2,shortCutBATService.getExistingBatFiles(TEST_RESOURCES).size());
+        assertEquals(0,shortCutBATService.getExistingBatFiles("/SomeNonExistentFolderPath").size());
+    }
+    
 }

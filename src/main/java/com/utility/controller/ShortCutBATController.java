@@ -4,11 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.utility.constants.Constants;
+import com.utility.exceptions.ArraysAreNotTheSameSizeException;
 import com.utility.models.ShortCutBATVO;
 import com.utility.service.ShortCutBATService;
 
@@ -33,4 +35,16 @@ public class ShortCutBATController extends ControllerTemplate{
 		return respMap;
 	}
 	
+	@GetMapping("getExistingBatFiles.do")
+	public Map<String, Object> getExistingBatFiles(@RequestParam  String folderPath) throws ArraysAreNotTheSameSizeException{
+		
+		respMap = new HashMap<>();
+	    
+		String[] keys = {Constants.SUCCESS_CONTROLLER,Constants.DATA};
+		Object[] values = {true,shortCutBATService.getExistingBatFiles(folderPath)};
+		
+		putEntriesIntoTheResponseMap(keys, values);
+
+		return respMap;
+	}
 }

@@ -14,4 +14,6 @@ public class Constants {
 	
 	public static final String SUCCESS_CONTROLLER = "success";
 
+    public static final String DATA = "data";
+
 }
