@@ -31,6 +31,7 @@ BackEnd - with package frontend
 localhost:8081
 
 FrontEnd
+* cd toReactFolder
 * npm install
 * npm start
 localhost:3000
