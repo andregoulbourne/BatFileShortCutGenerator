@@ -30,7 +30,7 @@ export default function BatShortCutGeneratorForm() {
         <h3 align="center">Bat ShortCut File Generator!</h3>
         <div>
 
-          <label htmlFor="pathWithEXEFile">Exe File:</label>
+          <label htmlFor="pathWithEXEFile">Exe With Path File:</label>
           <input 
             type="text" 
             name="pathWithEXEFile" 
@@ -56,21 +56,28 @@ export default function BatShortCutGeneratorForm() {
         </div>
         <br/>
         <button class="btn btn-primary" onClick={() => {
-            axios.post(generateShortCutUrl,null,{params: {pathWithEXEFile,writeOutPath,shortCutName}})
-                .then(respMap => {
-                    if(respMap.success){
-                        console.log("File Generated Successfully")
-                        alert("File Generated Successfully")
-                    } else {
-                        console.log("File Generation Failed")
-                        alert("File Generation Failed")
-                    }
-                    
-                })
-                .catch(error => {
-                    console.error(error);
-                });
-          }    
+	
+				  if (pathWithEXEFile && writeOutPath && shortCutName) {
+					  axios.post(generateShortCutUrl, null, { params: { pathWithEXEFile, writeOutPath, shortCutName } })
+						  .then(respMap => {
+							  if (respMap.data.success) {
+								  console.log("File Generated Successfully")
+								  alert("File Generated Successfully")
+							  } else {
+								  console.log("File Generation Failed")
+								  alert("File Generation Failed")
+							  }
+
+						  })
+						  .catch(error => {
+							  console.error(error);
+						  });
+				  } else {
+					  console.log("Please fill out the entire form")
+					  alert("Please fill out the entire form")
+				  }
+           
+         }   
         }>Generate</button>
       </form>
       

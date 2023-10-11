@@ -1,8 +1,8 @@
-/target/
-/bin/
-/.settings
-/logs/
-/.project
-/react/node_modules/
-/react/package-lock.json
-/.classpath
+target/*
+bin/*
+.settings
+logs/*
+.project
+react/node_modules/*
+react/package-lock.json
+.classpath
